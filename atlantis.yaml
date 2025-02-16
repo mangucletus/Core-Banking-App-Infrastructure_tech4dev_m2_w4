@@ -1,0 +1,18 @@
+version: 3
+projects:
+  - name: core-banking
+    dir: .
+    terraform_version: v1.5.0
+    autoplan:
+      when_modified: ["*.tf", "*.tfvars"]
+      enabled: true
+    workflow: default
+workflows:
+  default:
+    plan:
+      steps:
+        - init
+        - plan
+    apply:
+      steps:
+        - apply
