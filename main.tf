@@ -59,7 +59,7 @@ resource "aws_security_group" "core_sg" {
 
 # Create 25 EC2 instances for the core banking application
 resource "aws_instance" "core_vms" {
-  count         = 25
+  count         = 4
   ami           = "ami-0c55b159cbfafe1f0"  # Amazon Linux 2 AMI
   instance_type = "t3.micro"
   subnet_id     = aws_subnet.core_subnet.id
@@ -117,7 +117,7 @@ resource "aws_route53_record" "core_dns_record" {
 
 # Allocate 25 EBS (Elastic Block Store) volumes for storage
 resource "aws_ebs_volume" "core_storage" {
-  count = 25
+  count = 4
   availability_zone = "us-east-1a"
   size             = 10  # 10GB per volume
 }
