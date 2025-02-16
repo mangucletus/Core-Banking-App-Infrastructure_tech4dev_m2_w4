@@ -1,18 +1,24 @@
+# Specifies the version of the configuration file
 version: 3
+
 projects:
-  - name: core-banking
-    dir: .
-    terraform_version: v1.5.0
+  - name: core-banking  # Name of the Terraform project
+    dir: .  # The working directory where Terraform commands will be executed
+    terraform_version: v1.5.0  # Specifies the Terraform version to use for this project
+
     autoplan:
-      when_modified: ["*.tf", "*.tfvars"]
-      enabled: true
-    workflow: default
+      when_modified: ["*.tf", "*.tfvars"]  # Automatically trigger a plan when Terraform files are modified
+      enabled: true  # Enables automatic planning when changes are detected
+
+    workflow: default  # Specifies the workflow to use for this project
+
 workflows:
-  default:
+  default:  # Defines the default workflow used by Atlantis
     plan:
       steps:
-        - init
-        - plan
+        - init  # Initializes the Terraform working directory
+        - plan  # Generates an execution plan for Terraform changes
+
     apply:
       steps:
-        - apply
+        - apply  # Applies the Terraform configuration to provision resources
